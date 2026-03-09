@@ -11,11 +11,11 @@ class Agamotto(commands.Bot):
 
     async def setup_hook(self):
         await self.tree.sync()
-        print("아가모토의 눈 가동 완료.")
+        print("슈고모토의 눈 가동 완료.")
 
 bot = Agamotto()
 
-@bot.tree.command(name="소환", description="아가모토의 눈을 현재 음성 채널에 소환한다.")
+@bot.tree.command(name="소환", description="슈고모토의 눈을 현재 음성 채널에 소환한다.")
 async def summon(interaction: discord.Interaction):
     # 음성 채널에 있는지 확인 (명령어 제한 효과)
     if not interaction.user.voice or not interaction.user.voice.channel:
@@ -37,9 +37,9 @@ async def summon(interaction: discord.Interaction):
         await interaction.response.send_message(f"이미 소환돼 있어서 {target_vc.name}(으)로 이동했다.")
     else:
         await target_vc.connect()
-        await interaction.response.send_message(f"아가모토의 눈, {target_vc.name} 채널에 소환 완료.")
+        await interaction.response.send_message(f"슈고모토의 눈, {target_vc.name} 채널에 소환 완료.")
 
-@bot.tree.command(name="소환해제", description="아가모토의 눈을 돌려보낸다.")
+@bot.tree.command(name="소환해제", description="슈고모토의 눈을 돌려보낸다.")
 async def unsummon(interaction: discord.Interaction):
     bot_vc = interaction.guild.voice_client
     if bot_vc:
@@ -77,4 +77,5 @@ async def on_voice_state_update(member, before, after):
             await log_channel.send(f"[{member.display_name}] 입장.")
 
 # 환경변수에서 토큰 가져와서 실행
+
 bot.run(os.environ.get("DISCORD_TOKEN"))
